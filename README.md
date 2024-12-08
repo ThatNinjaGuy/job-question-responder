@@ -24,7 +24,17 @@ This application is designed to process documents, create vector embeddings, and
    pip install -r requirements.txt
    ```
 
-3. **(Optional) Jupyter Support**:
+3. **Create and Configure Environment File**:
+
+   Copy the example environment file and update it with your API keys:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Open `.env` and replace the placeholder values with your actual API keys.
+
+4. **(Optional) Jupyter Support**:
    If you plan to work with Jupyter notebooks, install the kernel:
 
    ```bash
