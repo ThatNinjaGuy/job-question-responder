@@ -26,10 +26,18 @@ def populate_vector_store():
     index_name = "job-question-responder"
     vector_store = PineconeVectorStore(index_name=index_name, embedding=embeddings)
 
-    # Check if the index already exists
-    if vector_store.index_exists():
-        print("Vector index already exists. Skipping embedding creation.")
-        return
+    # Perform a dummy search to check if any documents exist
+    try:
+        results = vector_store.similarity_search(query="dummy", k=1)
+        if len(results) > 0:
+            print(
+                "Vector index already contains documents. Skipping embedding creation."
+            )
+            return
+        print("Vector index is empty. Proceeding with embedding creation.")
+    except Exception as e:
+        print("Error during dummy search:", str(e))
+        print("Proceeding with embedding creation.")
 
     # Read and process documents
     doc = read_doc("documents/")
